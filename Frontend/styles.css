@@ -1,0 +1,105 @@
+/* ตั้งค่าพื้นฐานทั้งหน้า */
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("bg.jpg"); /* ใส่ชื่อไฟล์ภาพ */
+    background-size: cover;
+    background-position: center;
+    
+}
+
+body::before{
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.5); /* ปรับความจางตรงนี้ */
+    z-index: -1;
+}
+
+/* กล่องหลัก */
+.container{
+    width: 400px;
+    padding: 65px;
+    text-align: center;
+    background-color: white;   /* กล่องสีขาว */ 
+    border-radius: 10px;       /* มุมโค้ง */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* เงา */
+}
+
+/* หัวข้อ */
+.header{
+    font-size: 26px;
+    font-weight: bold;
+    color: #2f80ed;
+    margin-bottom: 10px;
+}
+
+.text{
+    font-size: 20px;
+    font-weight: bold;
+    color: #626872;
+    margin-bottom: 30px;
+}
+
+/* จัด input ให้อยู่ตรงกลาง */
+.form-input{
+    margin-bottom: 16px;
+}
+
+/* กล่อง input */
+.form{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cfcfcf;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* ปุ่ม */
+.button{
+    background-color: #2f80ed;
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* hover ปุ่ม */
+.button:hover{
+    background-color: #1c6ed5;
+}
+
+/* จัดปุ่มให้อยู่กลาง */
+.center{
+    margin-top: 30px;
+}
+
+.message {
+    background-color: #007bff;
+    padding: 10px;
+    display: none;
+}
+
+.message.success {
+    background-color: #218838;
+    display: block;
+}
+
+.message.danger{
+    background-color: #e92020;
+    display: block;
+}
+
+.message.noUserOrPassword{
+    background-color: #e92020;
+    display: block;
+}
