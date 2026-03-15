@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+
 </head>
+
 <body>
-    test
+    <div class="container">
+        <div class="header">
+            Register form
+        </div>
+        <div class="flex form-input">
+            <input class="form" name="user" type="text" placeholder="ชื่อผู้ใช้">
+        </div>
+        <div class="flex form-input">
+            <div class="header-form">asset_code</div>
+            <input class="form" name="asset_code" type="text">
+        </div>
+        <div class="flex form-input">
+            <div class="header-form">asset_name</div>
+            <input class="form" name="asset_name" type="text">
+        </div>
+        <div class="flex form-input">
+            <div class="header-form">category_id</div>
+            <input class="form" name="category_id" type="text">
+        </div>
+        <div class="flex form-input">
+            <div class="header-form">category_id</div>
+            <input class="form" name="category_id" type="text">
+        </div>
+        <div class="flex form-input">
+            <div class="header-form">description</div>
+            <input class="form" name="description" type="text">
+        </div>
+        <div id="message" class="message"></div>
+        <div class="center">
+            <button onclick="submitData()" class="button">ส่งข้อมูล</button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
+    <script src="register.js"></script>
 </body>
+
 </html>
