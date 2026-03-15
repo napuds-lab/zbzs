@@ -5,7 +5,7 @@ const submitData = async () => {
     const priceDOM = document.querySelector('input[name="price"]');
     const descriptionDOM = document.querySelector('input[name="description"]');
     const messageDOM = document.getElementById('message');
-
+//oejgh
     try {
         const userData = {
             asset_code: asset_codeDOM.value,
