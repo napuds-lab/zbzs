@@ -21,5 +21,4 @@ async function loadAssets(){
         });
 
     }
-
-    loadAssets();
+loadAssets();

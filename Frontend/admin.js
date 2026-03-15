@@ -1,37 +1,23 @@
-const validateData = (userData) => {
-    let errors = [];
-    if (!userData.user) {
-        errors.push('User is required');
-    }
-    if (!userData.password) {
-        errors.push('Password is required');
-    }
-    return errors;
-}
-
 const submitData = async () => {
-    const userDOM = document.querySelector('input[name="user"]');
-    const passwordDOM = document.querySelector('input[name="password"]');
+    const asset_codeDOM = document.querySelector('input[name="asset_code"]');
+    const asset_nameDOM = document.querySelector('input[name="asset_name"]');
+    const category_idDOM = document.querySelector('input[name="category_id"]');
+    const priceDOM = document.querySelector('input[name="price"]');
+    const descriptionDOM = document.querySelector('input[name="description"]');
     const messageDOM = document.getElementById('message');
 
     try {
         const userData = {
-            user: userDOM.value,
-            password: passwordDOM.value
+            asset_code: asset_codeDOM.value,
+            asset_name: asset_nameDOM.value,
+            category_id: category_idDOM.value,
+            price: priceDOM.value,
+            description: descriptionDOM.value
         };
 
-        const validationErrors = validateData(userData);
-        if (validationErrors.length) {
-            throw {
-                message: 'กรุณากรอกข้อมูลให้ครบ',
-                errors: validationErrors
-            };
-        }
-
-        const response = await axios.post('http://localhost:8000/register', userData);
+        const response = await axios.post('http://localhost:8000/assets', userData);
         messageDOM.innerText = response.data.message || 'บันทึกข้อมูลสำเร็จ';
         messageDOM.className = 'message success';
-        window.location.href = 'login.html';
 
     } catch (error) {
         const message = error.response?.data?.message || error.message || 'เกิดข้อผิดพลาด';

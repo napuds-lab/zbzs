@@ -27,6 +27,26 @@ const validateData = (userData) => {
     return errors;
 }
 
+const validateAssets = (userData) => {
+    let errors = [];
+    if (!userData.asset_code) {
+        errors.push('asset_code is required');
+    }
+    if (!userData.asset_name) {
+        errors.push('asset_name is required');
+    }
+    if (!userData.category_id) {
+        errors.push('category_id is required');
+    }
+    if (!userData.price) {
+        errors.push('price is required');
+    }
+    if (!userData.description) {
+        errors.push('description is required');
+    }
+    return errors;
+}
+
 const initMySQL = async () => {
     if (!conn) {
         conn = await mysql.createConnection({
@@ -56,7 +76,6 @@ app.post('/login', async (req, res) => {
 
             res.json({
                 status: "ok",
-                message: "login success",
                 isAdmin: isAdmin 
             });
         } else {
@@ -72,6 +91,36 @@ app.post('/login', async (req, res) => {
     }
 });
 
+app.get('/borrow', async (req, res) => {
+    try {
+        const [rows] = await conn.query('SELECT * FROM assets WHERE status = "Available"');
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.get('/return', async (req, res) => {
+    try {
+        const [rows] = await conn.query('SELECT * FROM assets WHERE status = "Borrowed"');
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.put('/assets/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await conn.query('UPDATE assets SET status = "Borrowed" WHERE asset_id = ?', id);
+        res.json({ 
+            message: 'Updated successfully' 
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 app.get('/assets', async (req, res) => {
     try {
         const [rows] = await conn.query('SELECT * FROM assets ');
@@ -81,14 +130,35 @@ app.get('/assets', async (req, res) => {
     }
 });
 
-app.get('/borrow', async (req, res) => {
-    try {
-        const [rows] = await conn.query('SELECT * FROM borrow ');
-        res.json(rows);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+
+
+app.post('/assets',async (req, res) => {
+    try{let assets = req.body;
+        const errors = validateAssets(assets);
+        if (errors.length > 0){
+            throw {
+                message: 'กรุณากรอกให้ครบ',
+                errors: errors
+            }
+        }
+        const results = await conn.query('INSERT INTO assets SET ?', assets);
+        console.log('results',results);
+        res.json({
+            message: 'บันทึกข้อมูลสำเร็จ',
+            data: results[0]
+        });
+    }catch(error) {
+        const errormessage = error.message || 'Error creating user';
+        const statusCode = error.statusCode || 500;
+        res.status(statusCode).json({
+            message: errormessage,
+            errors: error.errors || []
+        });
     }
-});
+})
+
+
+
 
 app.post('/register',async (req, res) => {
     try{let user = req.body;
@@ -106,7 +176,6 @@ app.post('/register',async (req, res) => {
             data: results[0]
         });
     }catch(error) {
-        console.log('ejhae')
         const errormessage = error.message || 'Error creating user';
         const statusCode = error.statusCode || 500;
         res.status(statusCode).json({
@@ -115,9 +184,6 @@ app.post('/register',async (req, res) => {
         });
     }
 })
-
-//put update status borrow
-
 
 
 app.listen(port, async () => {

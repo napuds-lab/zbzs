@@ -1,14 +1,3 @@
-const validateData = (userData) => {
-    let errors = [];
-    if (!userData.user) {
-        errors.push('User is required');
-    }
-    if (!userData.password) {
-        errors.push('Password is required');
-    }
-    return errors;
-}
-
 const submitData = async () => {
     const userDOM = document.querySelector('input[name="user"]');
     const passwordDOM = document.querySelector('input[name="password"]');
@@ -19,14 +8,6 @@ const submitData = async () => {
             user: userDOM.value,
             password: passwordDOM.value
         };
-
-        const validationErrors = validateData(userData);
-        if (validationErrors.length) {
-            throw {
-                message: 'กรุณากรอกข้อมูลให้ครบ',
-                errors: validationErrors
-            };
-        }
 
         const response = await axios.post('http://localhost:8000/register', userData);
         messageDOM.innerText = response.data.message || 'บันทึกข้อมูลสำเร็จ';

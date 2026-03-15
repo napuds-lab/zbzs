@@ -92,7 +92,7 @@ body::before{
 }
 
 .message.success {
-    background-color: #218838;
+    background-color: #5bdd77;
     display: block;
 }
 
