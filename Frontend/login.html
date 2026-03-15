@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -15,19 +17,20 @@
             เข้าสู่ระบบ
         </div>
         <div class="flex form-input">
-             <input class="form" name="user" type="text" placeholder="ชื่อผู้ใช้">
+            <input class="form" name="user" type="text" placeholder="ชื่อผู้ใช้">
         </div>
         <div class="flex form-input">
-             <input class="form" name="password" type="password" placeholder="รหัสผ่าน">
+            <input class="form" name="password" type="password" placeholder="รหัสผ่าน">
+        </div>
+        <div id="message" class="message"></div>
+        <div class="center">
+            <button onclick="login()" class="button">เข้าสู่ระบบ</button>
         </div>
         <div class="center">
-            <button onclick="submitData()" class="button">เข้าสู่ระบบ</button>
+            <a href="register.html" class="link">สมัครสมาชิก</a>
         </div>
-        <div id="message" class="message">
-            hi
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
-    <script src="login.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
+        <script src="login.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th,td{
+            border:1px solid black;
+            padding:8px;
+            text-align:left;
+        }
+
+        th{
+            background:#eee;
+        }
+</style>
+
+</head>
+<body>
+    <h1>ระบบจัดการครุภัณท์</h1>
+    <!--ทำปุ่มลิ้ง-->
+    <a href="borrowing.html" class="btn-add">
+    <button>ยืมครุภัณท์</button>
+    </a>
+    <a href="page2.html" class="btn-add">
+    <button>คืนครุภัณท์</button>
+    </a>
+    <a href="page2.html" class="btn-add">
+    <button>ข้อมูลการยืม</button>
+    </a>
+
+    <h2>Asset List</h2>
+
+    <table id="assetTable">
+    <thead>
+    <tr>
+    <th>ID</th>
+    <th>Code</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    </tbody>
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
